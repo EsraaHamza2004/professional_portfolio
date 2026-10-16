@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew Haven - Experience Coffee Like Never Before</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Global Styles */
+    :root {
+      --bg-dark: #0f0a07;
+      --bg-card: #1a120c;
+      --border-color: #2d1f15;
+      --accent-color: #c88a4b;
+      --accent-hover: #b37639;
+      --text-muted: #a39284;
+      --text-light: #fef8f3;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-script {
+      font-family: 'Alex Brush', cursive;
+      color: var(--accent-color);
+    }
+
+    /* Navbar Customization */
+    .navbar {
+      background-color: rgba(15, 10, 7, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(45, 31, 21, 0.5);
+    }
+
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-color) !important;
+    }
+
+    /* Buttons */
+    .btn-brand-primary {
+      background-color: var(--accent-color);
+      color: var(--bg-dark);
+      font-weight: 600;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-brand-primary:hover {
+      background-color: var(--accent-hover);
+      color: var(--bg-dark);
+    }
+
+    .btn-brand-outline {
+      border: 1px solid rgba(254, 248, 243, 0.3);
+      color: var(--text-light);
+      font-weight: 500;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .btn-brand-outline:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    /* Filter Buttons */
+    .btn-filter {
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      background-color: var(--bg-card);
+      border-radius: 20px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-filter:hover,
+    .btn-filter.active {
+      background-color: var(--accent-color);
+      color: var(--bg-dark);
+      border-color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    /* Custom Cards */
+    .card-dark {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .card-dark:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-4px);
+    }
+
+    .card-img-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card-dark:hover .card-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .btn-cart-add {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cart-add:hover {
+      background-color: var(--accent-color);
+      color: var(--bg-dark);
+    }
+
+    /* Offcanvas Cart */
+    .offcanvas {
+      background-color: var(--bg-card);
+      color: var(--text-light);
+      border-left: 1px solid var(--border-color);
+    }
+
+    /* Feature Badge Icons */
+    .badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+
+    /* Footer Inputs */
+    .form-control-dark {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+    }
+
+    .form-control-dark:focus {
+      background-color: var(--bg-card);
+      border-color: var(--accent-color);
+      color: var(--text-light);
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <div class="badge-icon">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div class="d-flex flex-column ms-2">
+          <span class="font-serif fw-bold text-white lh-1">BREW HAVEN</span>
+          <small style="font-size: 8px; letter-spacing: 2px; color: var(--accent-color);"
+            class="text-uppercase fw-semibold">Coffee Co.</small>
+        </div>
+      </a>
+
+      <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn border-0 text-white position-relative" data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas">
+            <i class="fa-solid fa-bag-shopping fs-5"></i>
+            <span id="cartBadge"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
+          </button>
+
+          <a href="#menu"
+            class="btn btn-brand-primary text-uppercase fs-7 tracking-wider d-none d-sm-inline-block">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="min-vh-100 d-flex align-items-center pt-5">
+    <div class="container pt-5">
+      <div class="row align-items-center gy-5">
+
+        <div class="col-lg-6">
+          <span class="font-script fs-2 d-block mb-2">Rich. Smooth. Perfect.</span>
+          <h1 class="font-serif display-4 fw-normal text-white mb-3">
+            Experience Coffee Like <br>
+            <span class="fst-italic" style="color: var(--accent-color) !important;">Never Before</span>
+          </h1>
+          <p class="mb-4 col-md-10" style="color: var(--text-muted) !important;">
+            Handcrafted coffee made from the finest beans, brewed to perfection for you.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 mb-5">
+            <a href="#menu" class="btn btn-brand-primary d-flex align-items-center gap-2">
+              <span>Explore Menu</span>
+              <i class="fa-solid fa-arrow-right fs-7"></i>
+            </a>
+            <button class="btn btn-brand-outline d-flex align-items-center gap-2">
+              <i class="fa-regular fa-circle-play text-warning"></i>
+              <span>Our Story</span>
+            </button>
+          </div>
+
+          <div class="row g-3 border-top border-secondary border-opacity-25 pt-4">
+            <div class="col-4 d-flex align-items-center gap-2">
+              <div class="badge-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+              <span class="small text-light" style="font-size: 11px;">Premium Quality Beans</span>
+            </div>
+            <div class="col-4 d-flex align-items-center gap-2">
+              <div class="badge-icon"><i class="fa-solid fa-fire"></i></div>
+              <span class="small text-light" style="font-size: 11px;">Expertly Roasted</span>
+            </div>
+            <div class="col-4 d-flex align-items-center gap-2">
+              <div class="badge-icon"><i class="fa-solid fa-heart"></i></div>
+              <span class="small text-light" style="font-size: 11px;">Made With Love</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 text-center">
+          <img src="https://images.pexels.com/photos/15076694/pexels-photo-15076694.jpeg" alt="Coffee Hero"
+            class="img-fluid rounded-4 shadow-lg border border-secondary border-opacity-25"
+            style="max-height: 480px; width: 100%; object-fit: cover;">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US SECTION -->
+  <section id="about" class="py-5 border-top border-secondary border-opacity-25">
+    <div class="container py-4">
+      <div class="row align-items-center gy-5">
+
+        <div class="col-lg-6 order-2 order-lg-1">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1000&auto=format&fit=crop"
+            alt="About Coffee" class="img-fluid rounded-4 border border-secondary border-opacity-25 w-100"
+            style="max-height: 450px; object-fit: cover;">
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2">
+          <span class="font-script fs-2 d-block mb-2">About Us</span>
+          <h2 class="font-serif display-5 text-white mb-3">More Than Just a Coffee</h2>
+          <p class="mb-4" style="color: var(--text-muted) !important;">
+            At Brew Haven, we believe coffee is more than a drink – it's an experience. Every cup we serve is a blend of
+            passion, quality, and perfection.
+          </p>
+
+          <div class="d-flex flex-column gap-3 mb-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="badge-icon"><i class="fa-solid fa-leaf"></i></div>
+              <span class="small text-light">Sustainably Sourced Beans</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="badge-icon"><i class="fa-solid fa-handshake"></i></div>
+              <span class="small text-light">Ethically Traded</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="badge-icon"><i class="fa-solid fa-fire"></i></div>
+              <span class="small text-light">Freshly Roasted</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="badge-icon"><i class="fa-solid fa-user-ninja"></i></div>
+              <span class="small text-light">Barista Crafted</span>
+            </div>
+          </div>
+
+          <button class="btn btn-brand-primary">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION (16 PRODUCTS) -->
+  <section id="menu" class="py-5">
+    <div class="container py-4">
+
+      <div class="text-center mb-4">
+        <span class="font-script fs-2 d-block">Handcrafted Goodness</span>
+        <h2 class="font-serif display-5 text-white">Our Complete Menu</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <button onclick="filterCategory('all')" class="btn btn-filter active" id="btn-all">All Items</button>
+        <button onclick="filterCategory('cold')" class="btn btn-filter" id="btn-cold">Cold Drinks</button>
+        <button onclick="filterCategory('hot')" class="btn btn-filter" id="btn-hot">Hot Coffee</button>
+        <button onclick="filterCategory('pastry')" class="btn btn-filter" id="btn-pastry">Pastries & Bakery</button>
+      </div>
+
+      <div class="row g-4" id="menuItemsContainer">
+
+        <!-- 1 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="cold">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=600&auto=format&fit=crop"
+                  alt="Iced Caramel Latte">
+              </div>
+              <h5 class="font-serif text-white mb-1">Iced Caramel Latte</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.8)</span>
+              </div>
+
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Smooth espresso with caramel and
+                chilled milk.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹199</span>
+              <button onclick="addToCart('Iced Caramel Latte', 199)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop"
+                  alt="Cappuccino">
+              </div>
+              <h5 class="font-serif text-white mb-1">Cappuccino</h5>
+
+              <!-- التقييم بالنجوم -->
+
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.5)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Classic cappuccino with rich foam and
+                bold flavor.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹169</span>
+              <button onclick="addToCart('Cappuccino', 169)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=600&auto=format&fit=crop"
+                  alt="Caffè Mocha">
+              </div>
+              <h5 class="font-serif text-white mb-1">Caffè Mocha</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Espresso with rich chocolate sauce and
+                steamed milk.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹189</span>
+              <button onclick="addToCart('Caffè Mocha', 189)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=600&auto=format&fit=crop"
+                  alt="Double Espresso">
+              </div>
+              <h5 class="font-serif text-white mb-1">Double Espresso</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- نجمة فارغة -->
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.2)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Pure, concentrated shot of our
+                signature roasted beans.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹139</span>
+              <button onclick="addToCart('Double Espresso', 139)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop"
+                  alt="Vanilla Flat White">
+              </div>
+              <h5 class="font-serif text-white mb-1">Vanilla Flat White</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Velvety micro-foam poured over espresso
+                and vanilla.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹179</span>
+              <button onclick="addToCart('Vanilla Flat White', 179)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="cold">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=600&auto=format&fit=crop"
+                  alt="Cold Brew Special">
+              </div>
+              <h5 class="font-serif text-white mb-1">Cold Brew Special</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.8)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Steeped for 12 hours for maximum
+                smoothness and low acidity.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹209</span>
+              <button onclick="addToCart('Cold Brew Special', 209)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="pastry">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=600&auto=format&fit=crop"
+                  alt="Chocolate Donut">
+              </div>
+              <h5 class="font-serif text-white mb-1">Chocolate Donut</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- نجمة فارغة -->
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.2)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Soft glazed donut dipped in Belgian
+                dark chocolate.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹119</span>
+              <button onclick="addToCart('Chocolate Donut', 119)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="pastry">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600&auto=format&fit=crop"
+                  alt="Butter Croissant">
+              </div>
+              <h5 class="font-serif text-white mb-1">Butter Croissant</h5>
+
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.8)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Flaky, golden French pastry baked fresh
+                daily.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹129</span>
+              <button onclick="addToCart('Butter Croissant', 129)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="cold">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=600&auto=format&fit=crop"
+                  alt="Hazelnut Frappuccino">
+              </div>
+              <h5 class="font-serif text-white mb-1">Hazelnut Frappe</h5>
+             
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Blended iced coffee topped with whipped
+                cream and hazelnut.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹219</span>
+              <button onclick="addToCart('Hazelnut Frappe', 219)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="cold">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600&auto=format&fit=crop"
+                  alt="Iced Matcha Latte">
+              </div>
+              <h5 class="font-serif text-white mb-1">Iced Matcha Latte</h5>
+              <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- نجمة فارغة -->
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.3)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Japanese ceremonial grade green tea
+                with chilled milk.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹229</span>
+              <button onclick="addToCart('Iced Matcha Latte', 229)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.pexels.com/photos/34399639/pexels-photo-34399639.jpeg" alt="Spanish Latte">
+              </div>
+              <h5 class="font-serif text-white mb-1">Spanish Latte</h5>
+              <!-- التقييم بالنجوم -->
+
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.8)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Rich espresso combined with sweetened
+                condensed milk.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹199</span>
+              <button onclick="addToCart('Spanish Latte', 199)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop"
+                  alt="Caffè Americano">
+              </div>
+              <h5 class="font-serif text-white mb-1">Caffè Americano</h5>
+                    <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.8)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Espresso shots topped with hot water
+                for a clean taste.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹149</span>
+              <button onclick="addToCart('Caffè Americano', 149)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="pastry">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop"
+                  alt="Fudge Brownie">
+              </div>
+              <h5 class="font-serif text-white mb-1">Fudge Brownie</h5>
+                    <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Warm, gooey chocolate fudge brownie
+                with walnuts.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹139</span>
+              <button onclick="addToCart('Fudge Brownie', 139)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="pastry">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=600&auto=format&fit=crop"
+                  alt="NY Cheesecake">
+              </div>
+              <h5 class="font-serif text-white mb-1">NY Cheesecake</h5>
+                      <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Classic rich cream cheese slice with
+                strawberry glaze.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹189</span>
+              <button onclick="addToCart('NY Cheesecake', 189)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="cold">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600&auto=format&fit=crop"
+                  alt="Iced Americano">
+              </div>
+              <h5 class="font-serif text-white mb-1">Iced Americano</h5>
+                         <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(5.0)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Bold espresso poured over cold water
+                and ice cubes.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹159</span>
+              <button onclick="addToCart('Iced Americano', 159)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="col-md-6 col-lg-3 menu-card" data-category="hot">
+          <div class="card card-dark p-3 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="card-img-wrapper mb-3">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop"
+                  alt="Hot Chocolate">
+              </div>
+              <h5 class="font-serif text-white mb-1">Signature Hot Cocoa</h5>
+                    <!-- التقييم بالنجوم -->
+              <div class="text-warning mb-2" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- نجمة فارغة -->
+                <span class="text-muted ms-1" style="font-size: 0.7rem;">(4.3)</span>
+              </div>
+              <p class="small mb-3" style="color: var(--text-muted) !important;">Rich cocoa melted with steamed milk &
+                marshmallow.</p>
+            </div>
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25">
+              <span class="font-serif fw-bold text-white fs-5">₹169</span>
+              <button onclick="addToCart('Signature Hot Cocoa', 169)" class="btn btn-cart-add"><i
+                  class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES BAR -->
+  <section id="features" class="py-5 border-top border-bottom border-secondary border-opacity-25"
+    style="background-color: rgba(26, 18, 12, 0.4);">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="badge-icon mx-auto mb-2"><i class="fa-solid fa-truck-fast"></i></div>
+          <h6 class="text-white mb-1">Free Delivery</h6>
+          <small style="color: var(--text-muted) !important;">On orders above ₹249</small>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="badge-icon mx-auto mb-2"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h6 class="text-white mb-1">Fresh & Fast</h6>
+          <small style="color: var(--text-muted) !important;">Prepared with care</small>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="badge-icon mx-auto mb-2"><i class="fa-solid fa-shield-halved"></i></div>
+          <h6 class="text-white mb-1">Secure Payment</h6>
+          <small style="color: var(--text-muted) !important;">100% safe & secure</small>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="badge-icon mx-auto mb-2"><i class="fa-solid fa-award"></i></div>
+          <h6 class="text-white mb-1">Loyalty Rewards</h6>
+          <small style="color: var(--text-muted) !important;">Earn points every order</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4 pb-5 border-bottom border-secondary border-opacity-25">
+
+        <div class="col-lg-4">
+          <h5 class="font-serif text-white mb-3">Stay in the Loop</h5>
+          <p class="small mb-3" style="color: var(--text-muted) !important;">Subscribe to get special offers, coffee
+            tips and updates from Brew Haven.</p>
+          <div class="input-group mb-3" style="max-width: 320px;">
+            <input type="email" class="form-control form-control-dark" placeholder="Enter your email">
+            <button class="btn btn-brand-primary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="font-serif text-white mb-3">Quick Links</h6>
+          <ul class="list-unstyled small d-flex flex-column gap-2" style="color: var(--text-muted) !important;">
+            <li><a href="#home" class="text-decoration-none text-reset">Home</a></li>
+            <li><a href="#menu" class="text-decoration-none text-reset">Menu</a></li>
+            <li><a href="#about" class="text-decoration-none text-reset">About Us</a></li>
+            <li><a href="#contact" class="text-decoration-none text-reset">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h6 class="font-serif text-white mb-3">Customer Care</h6>
+          <ul class="list-unstyled small d-flex flex-column gap-2" style="color: var(--text-muted) !important;">
+            <li><a href="#" class="text-decoration-none text-reset">FAQs</a></li>
+            <li><a href="#" class="text-decoration-none text-reset">Shipping & Delivery</a></li>
+            <li><a href="#" class="text-decoration-none text-reset">Terms & Conditions</a></li>
+            <li><a href="#" class="text-decoration-none text-reset">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3">
+          <h6 class="font-serif text-white mb-3">Contact Us</h6>
+          <ul class="list-unstyled small d-flex flex-column gap-2" style="color: var(--text-muted) !important;">
+            <li><i class="fa-solid fa-phone me-2 text-warning"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope me-2 text-warning"></i> hello@brewhaven.com</li>
+            <li><i class="fa-solid fa-location-dot me-2 text-warning"></i> 123 Coffee Lane, Brew City</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="text-center pt-4">
+        <small style="color: var(--text-muted) !important;">© 2026 Brew Haven Coffee Co. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART OFFCANVAS -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
+      <h5 class="offcanvas-title font-serif text-white"><i class="fa-solid fa-bag-shopping text-warning me-2"></i> Your
+        Shopping Bag</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartItemsList" class="flex-grow-1">
+        <p class="text-center text-secondary py-5">Your cart is empty.</p>
+      </div>
+      <div class="border-top border-secondary border-opacity-25 pt-3">
+        <div class="d-flex justify-content-between font-serif fs-5 mb-3">
+          <span>Total:</span>
+          <span id="cartTotalPrice" class="text-warning">0 EGP</span>
+        </div>
+        <button class="btn btn-brand-primary w-100 py-2">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript Logic -->
+ <!-- JavaScript Logic -->
+  <script>
+    let cart = [];
+
+    function addToCart(title, price) {
+      const itemIndex = cart.findIndex(item => item.title === title);
+      if (itemIndex > -1) {
+        cart[itemIndex].qty += 1;
+      } else {
+        cart.push({ title, price, qty: 1 });
+      }
+      renderCart();
+
+      const cartOffcanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+      cartOffcanvas.show();
+    }
+
+    function renderCart() {
+      const cartList = document.getElementById('cartItemsList');
+      const cartBadge = document.getElementById('cartBadge');
+      const cartTotal = document.getElementById('cartTotalPrice');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      if (cartBadge) cartBadge.textContent = totalItems;
+
+      if (cart.length === 0) {
+        if (cartList) cartList.innerHTML = '<p class="text-center text-secondary py-5">السلة فارغة حالياً.</p>';
+        if (cartTotal) cartTotal.textContent = ' EGP';
+        return;
+      }
+
+      let itemsHTML = '';
+      let totalPrice = 0;
+
+      cart.forEach((item, index) => {
+        totalPrice += item.price * item.qty;
+        itemsHTML += `
+          <div class="d-flex justify-content-between align-items-center p-3 mb-2 rounded border border-secondary border-opacity-25" style="background: rgba(15,10,7,0.5);">
+            <div>
+              <h6 class="mb-1 text-white">${item.title}</h6>
+              <small class="text-warning">${item.price} EGP× ${item.qty}</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button onclick="changeQuantity(${index}, -1)" class="btn btn-sm btn-outline-secondary text-white py-0 px-2">-</button>
+              <span class="small font-bold text-white">${item.qty}</span>
+              <button onclick="changeQuantity(${index}, 1)" class="btn btn-sm btn-outline-secondary text-white py-0 px-2">+</button>
+            </div>
+          </div>
+        `;
+      });
+
+      if (cartList) cartList.innerHTML = itemsHTML;
+      if (cartTotal) cartTotal.textContent = totalPrice + 'EGP';
+    }
+
+    function changeQuantity(index, change) {
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function filterCategory(category) {
+      // Update active button UI
+      document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-' + category);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Filter card items
+      const cards = document.querySelectorAll('.menu-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // تحويل العملة في الكروت الخارجية تلقائياً عند التصفح
+      document.querySelectorAll('.font-serif.fw-bold.fs-5, .text-decoration-line-through').forEach(el => {
+        if (!el.innerText.includes('EGP') && !el.innerText.includes('EGP') && !el.innerText.includes('EG')) {
+          el.innerText = el.innerText.replace('₹', '').trim() + ' EGP';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
